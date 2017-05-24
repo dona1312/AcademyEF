@@ -18,6 +18,6 @@ namespace AcademyEF.Models
 
         public bool IsAdmin { get; set; }
 
-        public ICollection<Course> Courses { get; set; }
+        public virtual ICollection<Course> Courses { get; set; }
     }
 }
