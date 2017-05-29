@@ -23,7 +23,7 @@ namespace AcademyEF.Models
         
         public User()
         {
-
+            this.IsAdmin = false;
         }
 
         public User(string username, string pass, string mail, bool isAdmin, string firstName, string lastName)
