@@ -44,14 +44,14 @@ namespace AcademyEF.Repositories
         }
         public void Save(T item)
         {
-            if (item.ID != Guid.Empty)
+            if (item.ID != 0)
                 Edit(item);
             else
                 Add(item);
 
             Context.SaveChanges();
         }
-        public T GetByID(Guid id)
+        public T GetByID(int id)
         {
             return Collection.Find(id);
         }

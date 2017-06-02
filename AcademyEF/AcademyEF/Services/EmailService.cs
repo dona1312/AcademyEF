@@ -22,13 +22,13 @@ namespace AcademyEF.Services
                 var port = HttpContext.Current.Request.Url.Port;
                 var path = HttpContext.Current.Request.Url.Host + ":" + port + "/Account/Verify?" + parameters;
 
-                mail.From = new MailAddress("phonebook.pro@gmail.com");
+                mail.From = new MailAddress("testforhallmanager@gmail.com");
                 mail.To.Add(user.Email);
                 mail.Subject = "Verify Registration";
                 mail.Body = "Click this link to verify your account: " + Environment.NewLine + "http://" + path;
-
+                
                 smtpServer.Port = 587;
-                smtpServer.Credentials = new System.Net.NetworkCredential("phonebook.pro@gmail.com", "phonebook");
+                smtpServer.Credentials = new System.Net.NetworkCredential("testforhallmanager@gmail.com", "hallmanager");
                 smtpServer.EnableSsl = true;
 
                 smtpServer.Send(mail);

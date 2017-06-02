@@ -28,7 +28,6 @@ namespace AcademyEF.Models
 
         public User(string username, string pass, string mail, bool isAdmin, string firstName, string lastName)
         {
-            ID = Guid.NewGuid();
             Username = username;
             Password = pass;
             Email = mail;

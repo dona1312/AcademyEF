@@ -25,11 +25,11 @@ namespace AcademyEF.Services
         {
             baseRepo.Save(item);
         }
-        public T GetByID(Guid id)
+        public T GetByID(int id)
         {
             return baseRepo.GetByID(id);
         }
-        public void Delete(Guid id)
+        public void Delete(int id)
         {
             baseRepo.Delete(GetByID(id));
         }

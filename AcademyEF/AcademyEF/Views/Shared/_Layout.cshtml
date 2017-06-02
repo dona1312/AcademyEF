@@ -37,19 +37,19 @@
             <h3 class="w3-padding-64"><b>Be IT<br>Academy</b></h3>
         </div>
         <div class="w3-bar-block">
-            @Html.ActionLink("Home", "Index", "Home", new { @class = "w3-bar-item w3-button w3-hover-white"})
-            @Html.ActionLink("Courses", "List", "Courses", new { @class = "w3-bar-item w3-button w3-hover-white" })
+            @Html.ActionLink("Home", "Index", new { @controller = "Home" }, new { @class = "w3-bar-item w3-button w3-hover-white"})
+            @Html.ActionLink("Courses", "List", new { @controller = "Courses" }, new { @class = "w3-bar-item w3-button w3-hover-white" })
             @if (AcademyEF.Services.AuthenticationService.LoggedUser != null)
             {
                 if (AcademyEF.Services.AuthenticationService.LoggedUser.IsAdmin)
                 {
-                    @Html.ActionLink("Users", "List", "Users", new { @class = "w3-bar-item w3-button w3-hover-white" })
+                    @Html.ActionLink("Users", "List",new { @controller = "Users" }, new { @class = "w3-bar-item w3-button w3-hover-white" })
                 }
 
-                @Html.ActionLink("My Courses", "MyCourses", "Courses", new { @class = "w3-bar-item w3-button w3-hover-white" })
+                @Html.ActionLink("My Courses", "MyCourses", new { @controller = "Courses" }, new { @class = "w3-bar-item w3-button w3-hover-white" })
             }
-            @Html.ActionLink("Contact", "Contact", "Home", new { @class = "w3-bar-item w3-button w3-hover-white" })
-            @Html.ActionLink("Login", "Login", "Account", new { @class = "w3-bar-item w3-button w3-hover-white" })
+            @Html.ActionLink("Contact", "Contact", new { @controller = "Home" }, new { @class = "w3-bar-item w3-button w3-hover-white" })
+            @Html.ActionLink("Login", "Login", new { @controller = "Account" }, new { @class = "w3-bar-item w3-button w3-hover-white" })
         </div>
     </nav>
 
@@ -63,7 +63,11 @@
     <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
     <div class="w3-main" style="margin-left:340px;margin-right:40px">
-
+        <div class="w3-container" style="margin-top:80px" id="showcase">
+            <h1 class="w3-jumbo"><b>@ViewBag.Title</b></h1>
+            <h1 class="w3-xxxlarge w3-text-blue"><b>@ViewBag.Description</b></h1>
+            <hr style="width:50px;border:5px solid blue" class="w3-round">
+        </div>
         <div class="w3-row-padding">
             <div class="container body-content">
                 @RenderBody()

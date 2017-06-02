@@ -8,6 +8,6 @@ namespace AcademyEF.Models
 {
     public abstract class BaseEntity
     {
-        public Guid ID { get; set; }
+        public int ID { get; set; }
     }
 }
