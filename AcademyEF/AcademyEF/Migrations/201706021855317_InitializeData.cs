@@ -3,50 +3,50 @@ namespace AcademyEF.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitData : DbMigration
+    public partial class InitializeData : DbMigration
     {
         public override void Up()
         {
             CreateTable(
                 "dbo.Courses",
                 c => new
-                {
-                    ID = c.Int(nullable: false),
-                    Name = c.String(),
-                    Description = c.String(),
-                    ImagePath = c.String(),
-                })
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Description = c.String(),
+                        ImagePath = c.String(),
+                    })
                 .PrimaryKey(t => t.ID);
-
+            
             CreateTable(
                 "dbo.Users",
                 c => new
-                {
-                    ID = c.Int(nullable: false),
-                    Username = c.String(),
-                    Password = c.String(),
-                    Email = c.String(),
-                    FirstName = c.String(),
-                    LastName = c.String(),
-                    IsAdmin = c.Boolean(nullable: false),
-                })
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Username = c.String(),
+                        Password = c.String(),
+                        Email = c.String(),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                        IsAdmin = c.Boolean(nullable: false),
+                    })
                 .PrimaryKey(t => t.ID);
-
+            
             CreateTable(
                 "dbo.UserCourses",
                 c => new
-                {
-                    User_ID = c.Int(nullable: false),
-                    Course_ID = c.Int(nullable: false),
-                })
+                    {
+                        User_ID = c.Int(nullable: false),
+                        Course_ID = c.Int(nullable: false),
+                    })
                 .PrimaryKey(t => new { t.User_ID, t.Course_ID })
                 .ForeignKey("dbo.Users", t => t.User_ID)
                 .ForeignKey("dbo.Courses", t => t.Course_ID)
                 .Index(t => t.User_ID)
                 .Index(t => t.Course_ID);
-
+            
         }
-
+        
         public override void Down()
         {
             DropForeignKey("dbo.UserCourses", "Course_ID", "dbo.Courses");

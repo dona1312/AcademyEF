@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 using AcademyEF.Models;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AcademyEF
 {
@@ -24,6 +20,10 @@ namespace AcademyEF
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+
+            modelBuilder.Entity<User>()
+            .Property(c => c.ID)
+            .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
         }
     }
 }

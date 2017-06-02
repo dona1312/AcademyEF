@@ -19,7 +19,7 @@ namespace AcademyEF.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data. E.g.
             //
-            //    context.People.AddOrUpdate(
+            context.Users.Add(new Models.User("admin","admin","admin@mail.com",true,"admin","Adminov"));
             //      p => p.FullName,
             //      new Person { FullName = "Andrew Peters" },
             //      new Person { FullName = "Brice Lambson" },
