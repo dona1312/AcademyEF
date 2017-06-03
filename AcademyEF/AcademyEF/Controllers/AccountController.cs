@@ -46,6 +46,7 @@ namespace AcademyEF.Controllers
             EmailService.SendEmail(user, ControllerContext);
 
             return this.RedirectToAction("Login");
+
         }
 
         [AuthorizationFilter]
