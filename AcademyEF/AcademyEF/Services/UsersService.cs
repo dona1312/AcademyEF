@@ -1,5 +1,5 @@
 ﻿using AcademyEF.Models;
-using AcademyEF.ViewModels;
+using AcademyEF.ViewModels.AccountVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;

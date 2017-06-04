@@ -174,6 +174,8 @@
     <Compile Include="Services\UsersService.cs" />
     <Compile Include="ViewModels\AccountVM\AccountEditVM.cs" />
     <Compile Include="ViewModels\AccountVM\AccountLoginVM.cs" />
+    <Compile Include="ViewModels\AccountVM\AccountResetVM.cs" />
+    <Compile Include="ViewModels\AccountVM\AccountVerifyVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -214,6 +216,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Verify.cshtml" />
+    <Content Include="Views\Account\Reset.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
