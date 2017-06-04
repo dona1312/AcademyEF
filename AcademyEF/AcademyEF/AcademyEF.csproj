@@ -149,6 +149,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\AuthenticationFilter.cs" />
     <Compile Include="Filters\AuthorizationFilter.cs" />
@@ -174,6 +175,8 @@
     <Compile Include="Services\UsersService.cs" />
     <Compile Include="ViewModels\AccountVM\AccountEditVM.cs" />
     <Compile Include="ViewModels\AccountVM\AccountLoginVM.cs" />
+    <Compile Include="ViewModels\CoursesVM\CourseListVM.cs" />
+    <Compile Include="ViewModels\CoursesVM\EditVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -214,9 +217,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Courses\List.cshtml" />
+    <Content Include="Views\Courses\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
