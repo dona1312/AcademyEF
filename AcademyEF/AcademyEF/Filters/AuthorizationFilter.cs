@@ -13,7 +13,7 @@ namespace AcademyEF.Filters
         {
             if (AuthenticationService.LoggedUser != null)
             {
-                HttpContext.Current.Response.Redirect("~/Contacts/List");
+                HttpContext.Current.Response.Redirect("~/Courses/List");
                 filterContext.Result = new EmptyResult();
             }
         }

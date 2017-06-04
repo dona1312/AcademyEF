@@ -4,10 +4,13 @@
     ViewBag.Title = "Courses";
     ViewBag.Description = "Our current courses";
 }
-
-<p>
-    @Html.ActionLink("Create New", "Edit")
-</p>
+@if (AcademyEF.Services.AuthenticationService.LoggedUser != null &&
+    AcademyEF.Services.AuthenticationService.LoggedUser.IsAdmin)
+{
+    <p>
+        @Html.ActionLink("Create New", "Edit")
+    </p>
+}
 @if (Model.Courses.Count == 0)
 {
     <p>No courses found !!!</p>
@@ -41,9 +44,13 @@ else
                 <img src="/Uploads/@item.ImagePath" alt="image" style="width:300px;height:300px;"/>
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                @if (AcademyEF.Services.AuthenticationService.LoggedUser != null &&
+                    AcademyEF.Services.AuthenticationService.LoggedUser.IsAdmin)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                }
+                @Html.ActionLink("Details", "Details", new { id = item.ID })
             </td>
         </tr>
         }

@@ -11,7 +11,6 @@ using AcademyEF.Filters;
 
 namespace AcademyEF.Controllers
 {
-    [AuthenticationFilter]
     public class CoursesController : Controller
     {
         public CoursesService coursesService { get; set; }
@@ -21,7 +20,6 @@ namespace AcademyEF.Controllers
             coursesService = new CoursesService();
         }
         
-        [AuthorizationFilter]
         public ActionResult List()
         {
             List<Course> courses = coursesService.GetAll();
@@ -31,12 +29,14 @@ namespace AcademyEF.Controllers
             return View(courseListVM);
         }
 
+        [AuthenticationFilter]
         [AuthorizationFilter]
         public ActionResult Details(int id)
         {
             return View();
         }
 
+        [AuthenticationFilter]
         [AuthorizationFilter]
         public ActionResult Edit(int? id)
         {
@@ -61,6 +61,7 @@ namespace AcademyEF.Controllers
             return View(model);
         }
 
+        [AuthenticationFilter]
         [AuthorizationFilter]
         [HttpPost]
         public ActionResult Edit()
@@ -114,6 +115,7 @@ namespace AcademyEF.Controllers
             return RedirectToAction("List");
         }
 
+        [AuthenticationFilter]
         [AuthorizationFilter]
         public ActionResult Delete(int? id)
         {
