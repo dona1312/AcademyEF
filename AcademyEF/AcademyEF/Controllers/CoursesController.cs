@@ -30,14 +30,14 @@ namespace AcademyEF.Controllers
         }
 
         [AuthenticationFilter]
-        [AuthorizationFilter]
+        //[AuthorizationFilter]
         public ActionResult Details(int id)
         {
             return View();
         }
 
         [AuthenticationFilter]
-        [AuthorizationFilter]
+        //[AuthorizationFilter]
         public ActionResult Edit(int? id)
         {
             EditVM model = new EditVM();
@@ -62,7 +62,7 @@ namespace AcademyEF.Controllers
         }
 
         [AuthenticationFilter]
-        [AuthorizationFilter]
+        //[AuthorizationFilter]
         [HttpPost]
         public ActionResult Edit()
         {
@@ -116,7 +116,7 @@ namespace AcademyEF.Controllers
         }
 
         [AuthenticationFilter]
-        [AuthorizationFilter]
+        //[AuthorizationFilter]
         public ActionResult Delete(int? id)
         {
 
