@@ -3,23 +3,19 @@
 @{
     if (Model.ID == 0)
     {
-        ViewBag.Title = "Add";
-        <h2>Add</h2>
+        ViewBag.Title = "Add new course";
     }
     else
     {
-        ViewBag.Title = "Edit";
-        <h2>Edit</h2>
+        ViewBag.Title = "Edit new course";
     }
 }
-
 
 @using (Html.BeginForm("Edit", "Courses", null, FormMethod.Post, new { enctype = "multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Course</h4>
         <hr />
         @Html.HiddenFor(model => model.ID)
         @Html.HiddenFor(model => model.ImagePath)
