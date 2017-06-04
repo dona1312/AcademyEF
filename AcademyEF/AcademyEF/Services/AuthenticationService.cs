@@ -7,7 +7,7 @@ using System.Web;
 
 namespace AcademyEF.Services
 {
-    public class AuthenticationService
+    public static class AuthenticationService
     {
         public static User LoggedUser { get; set; }
 

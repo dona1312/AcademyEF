@@ -49,7 +49,14 @@
                 @Html.ActionLink("My Courses", "MyCourses", new { @controller = "Courses" }, new { @class = "w3-bar-item w3-button w3-hover-white" })
             }
             @Html.ActionLink("Contact", "Contact", new { @controller = "Home" }, new { @class = "w3-bar-item w3-button w3-hover-white" })
-            @Html.ActionLink("Login", "Login", new { @controller = "Account" }, new { @class = "w3-bar-item w3-button w3-hover-white" })
+            @if (AcademyEF.Services.AuthenticationService.LoggedUser == null)
+            {
+                @Html.ActionLink("Login", "Login", new { @controller = "Account" }, new { @class = "w3-bar-item w3-button w3-hover-white" })
+            }
+            else
+            {
+               @Html.ActionLink("Logout", "Logout", new { @controller = "Account" }, new { @class = "w3-bar-item w3-button w3-hover-white" })
+            }
         </div>
     </nav>
 

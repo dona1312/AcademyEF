@@ -2,8 +2,9 @@
 using System.Web.Mvc;
 using AcademyEF.Models;
 using AcademyEF.Filters;
-using AcademyEF.ViewModels;
+using AcademyEF.ViewModels.AccountVM;
 using AcademyEF.Services;
+using System.Linq;
 
 namespace AcademyEF.Controllers
 {
@@ -76,6 +77,79 @@ namespace AcademyEF.Controllers
                 ModelState.AddModelError("", "Invalid username or password");
                 return View(model);
             }
+        }
+
+        [AuthorizationFilter]
+        public ActionResult Verify(int userID)
+        {
+            AccountVerifyVM model = new AccountVerifyVM();
+            if (userID < int.MinValue || userID > int.MaxValue)
+            {
+                ModelState.AddModelError("", "There is no such user!");
+            }
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AuthorizationFilter]
+        public ActionResult Verify(int userID, string key)
+        {
+            AccountVerifyVM model = new AccountVerifyVM();
+            TryUpdateModel(model);
+            UsersService userService = new UsersService();
+
+            User user = userService.GetByID(userID);
+            if (user == null)
+            {
+                ModelState.AddModelError("", "There is no such user!");
+            }
+            else
+            {
+                Guid guidValue = Guid.NewGuid();
+                if (!Guid.TryParse(key, out guidValue))
+                {
+                    ModelState.AddModelError("", "Inavlid key! Please check your e-mail for correct activation link!");
+                }
+                if (user.Password == key)
+                {
+                    user.Password = model.Password;
+                    userService.Save(user);
+                }
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            return this.RedirectToAction("Login");
+        }
+        public ActionResult Reset(string str)
+        {
+            AccountResetVM model = new AccountResetVM();
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AuthorizationFilter]
+        public ActionResult Reset()
+        {
+            AccountResetVM model = new AccountResetVM();
+            TryUpdateModel(model);
+
+            UsersService usersService = new UsersService();
+            User user = usersService.GetAll(u => u.Email == model.Email).FirstOrDefault();
+            user.Password = Guid.NewGuid().ToString();
+
+            usersService.Save(user);
+
+            EmailService.SendEmail(user, ControllerContext);
+            
+            return View(model);
+        }
+        public ActionResult Logout()
+        {
+            AuthenticationService.Logout();
+            return this.RedirectToAction("Login");
         }
     }
 }

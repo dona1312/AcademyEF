@@ -175,6 +175,8 @@
     <Compile Include="Services\UsersService.cs" />
     <Compile Include="ViewModels\AccountVM\AccountEditVM.cs" />
     <Compile Include="ViewModels\AccountVM\AccountLoginVM.cs" />
+    <Compile Include="ViewModels\AccountVM\AccountResetVM.cs" />
+    <Compile Include="ViewModels\AccountVM\AccountVerifyVM.cs" />
     <Compile Include="ViewModels\CoursesVM\CourseListVM.cs" />
     <Compile Include="ViewModels\CoursesVM\EditVM.cs" />
   </ItemGroup>
@@ -217,6 +219,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Verify.cshtml" />
+    <Content Include="Views\Account\Reset.cshtml" />
     <Content Include="Views\Courses\List.cshtml" />
     <Content Include="Views\Courses\Edit.cshtml" />
   </ItemGroup>
