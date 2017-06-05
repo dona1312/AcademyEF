@@ -151,6 +151,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Filters\AuthenticationFilter.cs" />
     <Compile Include="Filters\AuthorizationFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -179,6 +180,8 @@
     <Compile Include="ViewModels\AccountVM\AccountVerifyVM.cs" />
     <Compile Include="ViewModels\CoursesVM\CourseListVM.cs" />
     <Compile Include="ViewModels\CoursesVM\EditVM.cs" />
+    <Compile Include="ViewModels\UsersVM\EditVM.cs" />
+    <Compile Include="ViewModels\UsersVM\UserListVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -223,6 +226,8 @@
     <Content Include="Views\Account\Reset.cshtml" />
     <Content Include="Views\Courses\List.cshtml" />
     <Content Include="Views\Courses\Edit.cshtml" />
+    <Content Include="Views\Users\List.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

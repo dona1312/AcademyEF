@@ -37,7 +37,7 @@ namespace AcademyEF.Controllers
                 return View(model);
             }
 
-            user.FirstName = model.LastName;
+            user.FirstName = model.FirstName;
             user.LastName = model.LastName;
             user.Username = model.Username;
             user.Email = model.Email;
