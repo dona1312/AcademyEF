@@ -31,6 +31,17 @@ namespace AcademyEF.Controllers
 
         [AuthenticationFilter]
         //[AuthorizationFilter]
+        public ActionResult MyCourses()
+        {
+            List<Course> courses = coursesService.GetMyCourses(AuthenticationService.LoggedUser.ID);
+            CourseListVM courseListVM = new CourseListVM();
+            courseListVM.Courses = courses;
+
+            return View("List",courseListVM);
+        } 
+
+        [AuthenticationFilter]
+        //[AuthorizationFilter]
         public ActionResult Details(int id)
         {
             return View();
