@@ -10,11 +10,19 @@ namespace AcademyEF.Services
 {
     public class BaseService<T> where T : BaseEntity, new()
     {
+        protected UnitOfWork UnitOfWork;
         private readonly BaseRepository<T> baseRepo;
 
         public BaseService()
         {
-            baseRepo = new BaseRepository<T>();
+            this.UnitOfWork = new UnitOfWork();
+            baseRepo = new BaseRepository<T>(this.UnitOfWork);
+        }
+
+        public BaseService(UnitOfWork unit)
+        {
+            this.UnitOfWork = unit;
+            baseRepo = new BaseRepository<T>(UnitOfWork);
         }
 
         public List<T> GetAll(Expression<Func<T, bool>> filter = null)
@@ -23,7 +31,15 @@ namespace AcademyEF.Services
         }
         public void Save(T item)
         {
-            baseRepo.Save(item);
+            try
+            {
+                baseRepo.Save(item);
+                this.UnitOfWork.Commit();
+            }
+            catch (Exception ex)
+            {
+                this.UnitOfWork.Rollback();
+            }
         }
         public T GetByID(int id)
         {
@@ -31,7 +47,15 @@ namespace AcademyEF.Services
         }
         public void Delete(int id)
         {
-            baseRepo.Delete(GetByID(id));
+            try
+            {
+                baseRepo.Delete(GetByID(id));
+                this.UnitOfWork.Commit();
+            }
+            catch (Exception)
+            {
+                this.UnitOfWork.Rollback();
+            }
         }
     }
 }

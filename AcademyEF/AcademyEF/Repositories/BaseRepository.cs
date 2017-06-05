@@ -13,11 +13,20 @@ namespace AcademyEF.Repositories
         public DbContext Context { get; set; }
 
         public DbSet<T> Collection { get; set; }
-        
+
+        public UnitOfWork UnitOfWork { get; set; }
+
         public BaseRepository()
         {
             Context = new AcademyContext();
             Collection = Context.Set<T>();
+        }
+
+        public BaseRepository(UnitOfWork unit)
+        {
+            this.UnitOfWork = unit;
+            this.Context = unit.Context;
+            this.Collection = this.Context.Set<T>();
         }
 
         public List<T> GetAll(Expression<Func<T, bool>> filter = null)

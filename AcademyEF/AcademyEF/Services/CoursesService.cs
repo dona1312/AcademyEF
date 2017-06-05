@@ -1,4 +1,5 @@
 ﻿using AcademyEF.Models;
+using AcademyEF.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,5 +9,14 @@ namespace AcademyEF.Services
 {
     public class CoursesService : BaseService<Course>
     {
+        public CoursesService()
+        {
+
+        }
+
+        public CoursesService(UnitOfWork unit):base(unit)
+        {
+
+        }
     }
 }

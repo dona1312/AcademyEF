@@ -8,5 +8,14 @@ namespace AcademyEF.Repositories
 {
     public class CoursesRepository : BaseRepository<Course>
     {
+        public CoursesRepository()
+        {
+
+        }
+
+        public CoursesRepository(UnitOfWork unit):base(unit)
+        {
+
+        }
     }
 }

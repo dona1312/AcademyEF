@@ -31,7 +31,11 @@ else
                         @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" }) @Html.Raw("&nbsp;")
                         @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
                     }
+
+                    @if (AcademyEF.Services.AuthenticationService.LoggedUser != null)
+                    {
                     @Html.ActionLink("Assign", "Assign", new { id = item.ID }, new { @class = "btn btn-success" })
+                    }
                 </div>
             </div>
         </div>
