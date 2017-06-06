@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous" />
 <style>
     body, h1, h2, h3, h4, h5 {
         font-family: "Poppins", sans-serif
@@ -37,13 +38,13 @@
             <h3 class="w3-padding-64"><b>Be IT<br>Academy</b></h3>
         </div>
         <div class="w3-bar-block">
-            @Html.ActionLink("Home", "Index", new { @controller = "Home" }, new { @class = "w3-bar-item w3-button w3-hover-white"})
+            @Html.ActionLink("Home", "Index", new { @controller = "Home" }, new { @class = "w3-bar-item w3-button w3-hover-white" })
             @Html.ActionLink("Courses", "List", new { @controller = "Courses" }, new { @class = "w3-bar-item w3-button w3-hover-white" })
             @if (AcademyEF.Services.AuthenticationService.LoggedUser != null)
             {
                 if (AcademyEF.Services.AuthenticationService.LoggedUser.IsAdmin)
                 {
-                    @Html.ActionLink("Users", "List",new { @controller = "Users" }, new { @class = "w3-bar-item w3-button w3-hover-white" })
+                    @Html.ActionLink("Users", "List", new { @controller = "Users" }, new { @class = "w3-bar-item w3-button w3-hover-white" })
                 }
 
                 @Html.ActionLink("My Courses", "MyCourses", new { @controller = "Courses" }, new { @class = "w3-bar-item w3-button w3-hover-white" })
@@ -55,7 +56,7 @@
             }
             else
             {
-               @Html.ActionLink("Logout", "Logout", new { @controller = "Account" }, new { @class = "w3-bar-item w3-button w3-hover-white" })
+                @Html.ActionLink("Logout", "Logout", new { @controller = "Account" }, new { @class = "w3-bar-item w3-button w3-hover-white" })
             }
         </div>
     </nav>
@@ -76,15 +77,13 @@
             <hr style="width:50px;border:5px solid blue" class="w3-round">
         </div>
         <div class="w3-row-padding">
-            <div class="container body-content">
-                @RenderBody()
-                <hr />
-                <footer>
-                    <p>&copy; @DateTime.Now.Year - Be IT Academy</p>
-                </footer>
-            </div>
+            @RenderBody()
         </div>
 
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Be IT Academy</p>
+        </footer>
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)

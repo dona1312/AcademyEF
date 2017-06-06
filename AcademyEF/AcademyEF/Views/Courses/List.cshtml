@@ -7,8 +7,8 @@
 @if (AcademyEF.Services.AuthenticationService.LoggedUser != null &&
     AcademyEF.Services.AuthenticationService.LoggedUser.IsAdmin)
 {
-    <p>
-        @Html.ActionLink("Create New", "Edit")
+    <p class="row" style="margin-left:17px;">
+        @Html.ActionLink("Create New", "Edit", null, new { @class = "btn btn-info" })
     </p>
 }
 @if (Model.Courses.Count == 0)
@@ -17,42 +17,27 @@
 }
 else
 {
-    <table class="table">
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Description
-            </th>
-            <th>
-                Image
-            </th>
-            <th></th>
-        </tr>
-        
-        @foreach (var item in Model.Courses)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <img src="/Uploads/@item.ImagePath" alt="image" style="width:300px;height:300px;"/>
-            </td>
-            <td>
-                @if (AcademyEF.Services.AuthenticationService.LoggedUser != null &&
-                    AcademyEF.Services.AuthenticationService.LoggedUser.IsAdmin)
-                {
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                }
-                @Html.ActionLink("Details", "Details", new { id = item.ID })
-            </td>
-        </tr>
-        }
-    </table>
+    foreach (var item in Model.Courses)
+    {
+        <div class="col-md-4">
+            <div class="card" style="width: 30rem;">
+                <img class="card-img-top" src="/Uploads/@item.ImagePath" alt="Card image cap" style="width:300px;height:300px;">
+                <div class="card-block">
+                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h4>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                    @if (AcademyEF.Services.AuthenticationService.LoggedUser != null &&
+                            AcademyEF.Services.AuthenticationService.LoggedUser.IsAdmin)
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" }) @Html.Raw("&nbsp;")
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+                    }
+
+                    @if (AcademyEF.Services.AuthenticationService.LoggedUser != null)
+                    {
+                    @Html.ActionLink("Assign", "Assign", new { id = item.ID }, new { @class = "btn btn-success" })
+                    }
+                </div>
+            </div>
+        </div>
+    }
 }

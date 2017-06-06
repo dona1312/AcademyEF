@@ -8,6 +8,15 @@ namespace AcademyEF.Repositories
 {
     public class CoursesRepository : BaseRepository<Course>
     {
+        public CoursesRepository()
+        {
+
+        }
+
+        public CoursesRepository(UnitOfWork unit):base(unit)
+        {
+
+        }
         public List<Course> GetMyCourses(int userID)
         {
             AcademyContext ac = new AcademyContext();

@@ -9,6 +9,15 @@ namespace AcademyEF.Services
 {
     public class CoursesService : BaseService<Course>
     {
+        public CoursesService()
+        {
+
+        }
+
+        public CoursesService(UnitOfWork unit):base(unit)
+        {
+
+        }
         public List<Course> GetMyCourses(int userID)
         {
             return new CoursesRepository().GetMyCourses(userID);

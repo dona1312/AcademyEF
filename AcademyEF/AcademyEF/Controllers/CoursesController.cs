@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using AcademyEF.Filters;
+using AcademyEF.Repositories;
 
 namespace AcademyEF.Controllers
 {
@@ -138,6 +139,26 @@ namespace AcademyEF.Controllers
                 System.IO.File.Delete(imagePath);
                 coursesService.Delete(id.Value);
             }
+            return RedirectToAction("List");
+        }
+
+        [AuthenticationFilter]
+        public ActionResult Assign(int? id)
+        {
+            if (id.HasValue)
+            {
+                UnitOfWork unit = new UnitOfWork();
+                coursesService = new CoursesService(unit);
+                UsersService userService = new UsersService(unit);
+
+                var user = userService.GetByID(AuthenticationService.LoggedUser.ID);
+                Course course = coursesService.GetByID(id.Value);
+
+                course.Users.Add(user);
+
+                coursesService.Save(course);
+            }
+
             return RedirectToAction("List");
         }
     }

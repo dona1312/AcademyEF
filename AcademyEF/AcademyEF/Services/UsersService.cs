@@ -1,4 +1,5 @@
 ﻿using AcademyEF.Models;
+using AcademyEF.Repositories;
 using AcademyEF.ViewModels.AccountVM;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,16 @@ namespace AcademyEF.Services
 {
     public class UsersService : BaseService<User>
     {
+        public UsersService()
+        {
+
+        }
+
+        public UsersService(UnitOfWork unit):base(unit)
+        {
+
+        }
+
         public User CheckUsernameOrMail(AccountEditVM user)
         {
             UsersService userService = new UsersService();
