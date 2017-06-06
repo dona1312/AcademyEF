@@ -19,6 +19,7 @@ namespace AcademyEF.Controllers
         }
 
         [AuthenticationFilter]
+        [AuthorizationFilter]
         public ActionResult List()
         {
             List<User> users = usersService.GetAll();
@@ -34,7 +35,7 @@ namespace AcademyEF.Controllers
         }
 
         [AuthenticationFilter]
-        //[AuthorizationFilter]
+        [AuthorizationFilter]
         public ActionResult Edit(int? id)
         {
             EditVM model = new EditVM();
@@ -62,7 +63,7 @@ namespace AcademyEF.Controllers
         }
 
         [AuthenticationFilter]
-        //[AuthorizationFilter]
+        [AuthorizationFilter]
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -97,7 +98,7 @@ namespace AcademyEF.Controllers
         }
 
         [AuthenticationFilter]
-        //[AuthorizationFilter]
+        [AuthorizationFilter]
         public ActionResult Delete(int? id)
         {
             if (id.HasValue)

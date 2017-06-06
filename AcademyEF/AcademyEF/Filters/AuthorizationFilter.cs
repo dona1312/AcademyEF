@@ -11,7 +11,7 @@ namespace AcademyEF.Filters
     {
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            if (AuthenticationService.LoggedUser != null)
+            if (AuthenticationService.LoggedUser != null && !AuthenticationService.LoggedUser.IsAdmin)
             {
                 HttpContext.Current.Response.Redirect("~/Courses/List");
                 filterContext.Result = new EmptyResult();
