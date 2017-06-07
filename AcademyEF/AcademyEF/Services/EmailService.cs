@@ -29,7 +29,7 @@ namespace AcademyEF.Services
                 
                 smtpServer.Port = 587;
                 smtpServer.UseDefaultCredentials = false;
-                smtpServer.Credentials = new System.Net.NetworkCredential("testforhallmanager@gmail.com", "hallmanager");
+                smtpServer.Credentials = new System.Net.NetworkCredential("phonebook.pro@gmail.com", "phonebook");
                 smtpServer.EnableSsl = true;
 
                 smtpServer.Send(mail);
