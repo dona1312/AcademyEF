@@ -13,31 +13,23 @@ namespace AcademyEF.Services
     {
         public static void SendEmail(User user, ControllerContext context)
         {
-            try
-            {
-                MailMessage mail = new MailMessage();
-                SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress("no-reply@management.com");
+            mail.Subject = "Registration successfull";
+            mail.To.Add(user.Email);
+            mail.Body = "Hello " + user.FirstName + Environment.NewLine
+                + "Thank you for registering. Confirm your registration by visiting the following link: "
+                + Environment.NewLine
+                + "http://taskmanager-14.apphb.com/Account/Verify?guid=" + user.Password;
 
-                string parameters = "userID=" + user.ID + "&key=" + user.Password;
-                var port = HttpContext.Current.Request.Url.Port;
-                var path = HttpContext.Current.Request.Url.Host + ":" + port + "/Account/Verify?" + parameters;
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            smtp.EnableSsl = true;
+            smtp.UseDefaultCredentials = false;
+            #region Private
+            smtp.Credentials = new System.Net.NetworkCredential("testforhallmanager@gmail.com", "hallmanager");
+            #endregion
 
-                mail.From = new MailAddress("testforhallmanager@gmail.com");
-                mail.To.Add(user.Email);
-                mail.Subject = "Verify Registration";
-                mail.Body = "Click this link to verify your account: " + Environment.NewLine + "http://" + path;
-                
-                smtpServer.Port = 587;
-                smtpServer.UseDefaultCredentials = false;
-                smtpServer.Credentials = new System.Net.NetworkCredential("phonebook.pro@gmail.com", "phonebook");
-                smtpServer.EnableSsl = true;
-
-                smtpServer.Send(mail);
-            }
-            catch (Exception ex)
-            {
-
-            }
+            smtp.Send(mail);
         }
     }
 }
