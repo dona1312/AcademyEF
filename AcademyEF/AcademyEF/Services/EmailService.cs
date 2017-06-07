@@ -28,6 +28,7 @@ namespace AcademyEF.Services
                 mail.Body = "Click this link to verify your account: " + Environment.NewLine + "http://" + path;
                 
                 smtpServer.Port = 587;
+                smtpServer.UseDefaultCredentials = false;
                 smtpServer.Credentials = new System.Net.NetworkCredential("testforhallmanager@gmail.com", "hallmanager");
                 smtpServer.EnableSsl = true;
 
