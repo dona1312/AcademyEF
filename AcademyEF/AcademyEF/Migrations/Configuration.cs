@@ -10,6 +10,7 @@ namespace AcademyEF.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(AcademyEF.AcademyContext context)

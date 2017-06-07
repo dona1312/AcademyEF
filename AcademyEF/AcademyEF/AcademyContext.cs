@@ -2,6 +2,7 @@
 using AcademyEF.Models;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.ComponentModel.DataAnnotations.Schema;
+using AcademyEF.Migrations;
 
 namespace AcademyEF
 {
@@ -19,6 +20,7 @@ namespace AcademyEF
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<AcademyContext, Configuration>());
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
             modelBuilder.Entity<User>()
