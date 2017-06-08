@@ -31,7 +31,6 @@ namespace AcademyEF.Controllers
         }
 
         [AuthenticationFilter]
-        [AuthorizationFilter]
         public ActionResult MyCourses()
         {
             List<Course> courses = coursesService.GetMyCourses(AuthenticationService.LoggedUser.ID);
