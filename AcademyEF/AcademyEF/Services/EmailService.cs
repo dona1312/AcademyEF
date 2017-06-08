@@ -14,13 +14,15 @@ namespace AcademyEF.Services
         public static void SendEmail(User user, ControllerContext context)
         {
             MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("no-reply@management.com");
+            string parameters = "userID=" + user.ID + "&key=" + user.Password;
+
+            mail.From = new MailAddress("info@beITacademy.com");
             mail.Subject = "Registration successfull";
             mail.To.Add(user.Email);
             mail.Body = "Hello " + user.FirstName + Environment.NewLine
-                + "Thank you for registering. Confirm your registration by visiting the following link: "
+                + "Confirm your registration by visiting the following link: "
                 + Environment.NewLine
-                + "http://taskmanager-14.apphb.com/Account/Verify?guid=" + user.Password;
+                + "http://academyef.apphb.com/Account/Verify?" + parameters;
 
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
             smtp.EnableSsl = true;

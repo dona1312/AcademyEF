@@ -1,5 +1,6 @@
 namespace AcademyEF.Migrations
 {
+    using AcademyEF.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -20,13 +21,14 @@ namespace AcademyEF.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data. E.g.
             //
-            context.Users.Add(new Models.User("admin","admin","admin@mail.com",true,"admin","Adminov"));
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            User admin = new User("admin", "admin", "admin@mail.com", true, "admin", "Adminov");
+
+            User user = new User("user", "user", "user@mail.com", true, "user", "user");
+
+            context.Users.AddOrUpdate(
+              p => p.Username,
+              admin, user
+            );
         }
     }
 }
