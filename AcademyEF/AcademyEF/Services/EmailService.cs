@@ -22,7 +22,7 @@ namespace AcademyEF.Services
             mail.Body = "Hello " + user.FirstName + Environment.NewLine
                 + "Confirm your registration by visiting the following link: "
                 + Environment.NewLine
-                + "http://academyef.apphb.com/Account/Verify?" + parameters;
+                + "http://beit.apphb.com/Account/Verify?" + parameters;
 
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
             smtp.EnableSsl = true;
