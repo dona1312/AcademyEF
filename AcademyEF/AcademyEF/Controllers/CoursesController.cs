@@ -94,26 +94,26 @@ namespace AcademyEF.Controllers
                 course = new Course();
             }
 
-            if (model.ImageUpload != null && model.ImageUpload.ContentLength > 0)
-            {
-                var file = Path.GetExtension(model.ImageUpload.FileName);
-                if (String.IsNullOrEmpty(file) || !file.Equals(".jpg", StringComparison.OrdinalIgnoreCase))
-                {
-                    ModelState.AddModelError("", "Image format not accepted");
-                }
-                else
-                {
-                    if (!String.IsNullOrEmpty(model.ImagePath))
-                    {
-                        var imagePathOld = Path.Combine(Server.MapPath("/Uploads/"), model.ImagePath);
-                        System.IO.File.Delete(imagePathOld);
-                    }
-                    var uploadDir = "/Uploads/";
-                    var imagePath = Path.Combine(Server.MapPath(uploadDir), model.ImageUpload.FileName);
-                    model.ImagePath = model.ImageUpload.FileName;
-                    model.ImageUpload.SaveAs(imagePath);
-                }
-            }
+            //if (model.ImageUpload != null && model.ImageUpload.ContentLength > 0)
+            //{
+            //    var file = Path.GetExtension(model.ImageUpload.FileName);
+            //    if (String.IsNullOrEmpty(file) || !file.Equals(".jpg", StringComparison.OrdinalIgnoreCase))
+            //    {
+            //        ModelState.AddModelError("", "Image format not accepted");
+            //    }
+            //    else
+            //    {
+            //        if (!String.IsNullOrEmpty(model.ImagePath))
+            //        {
+            //            var imagePathOld = Path.Combine(Server.MapPath("/Uploads/"), model.ImagePath);
+            //            System.IO.File.Delete(imagePathOld);
+            //        }
+            //        var uploadDir = "/Uploads/";
+            //        var imagePath = Path.Combine(Server.MapPath(uploadDir), model.ImageUpload.FileName);
+            //        model.ImagePath = model.ImageUpload.FileName;
+            //        model.ImageUpload.SaveAs(imagePath);
+            //    }
+            //}
 
             if (course == null)
             {
@@ -135,8 +135,8 @@ namespace AcademyEF.Controllers
             if (id.HasValue)
             {
                 Course course = coursesService.GetByID(id.Value);
-                var imagePath = Path.Combine(Server.MapPath("/Uploads/"), course.ImagePath);
-                System.IO.File.Delete(imagePath);
+                //var imagePath = Path.Combine(Server.MapPath("/Uploads/"), course.ImagePath);
+                //System.IO.File.Delete(imagePath);
                 coursesService.Delete(id.Value);
             }
             return RedirectToAction("List");
